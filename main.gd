@@ -236,7 +236,7 @@ func _on_reset_pause_pressed() -> void:
 
 func _on_sair_pause_pressed() -> void:
 	click.play()
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.15).timeout
 	Global.reset = false
 	pause_game.visible = false
 	get_tree().paused = false

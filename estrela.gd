@@ -3,6 +3,7 @@ extends Area2D
 var velocidade_queda = 200  # Velocidade com que a fruta cai
 var toque_unico = false
 var toque_contador=0
+var travado = false
 # Referência ao Timer adicionado manualmente
 var tempo_ultimo_toque = 0.0
 const LIMIAR_TOQUE_DUPLO = 0.6  # Tempo máximo (em ms) para considerar duplo toque
@@ -36,6 +37,7 @@ func _process(delta):
 	
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if travado == false:
 		if event is InputEventMouseButton and event.is_pressed():
 			#$estrela/estrela_a.stop()
 			$estrela/estrela_a.play("estrela")
@@ -47,6 +49,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				tempo_ultimo_toque = 0.0  # Reseta o tempo
 				$click.stop()
 				toque_duplo_achado()
+				travado = true
 			else:
 				#Primeiro toque detectado ou tempo limite excedido
 				toque_contador +=1
@@ -64,7 +67,7 @@ func toque_duplo_achado():
 		Global.vidas_perdidas += 1
 		await get_tree().create_timer(0.5).timeout 
 		queue_free()
-		
+		travado = false
 		
 	elif self.is_in_group("escolhido"):
 		$pegou.play()
@@ -80,6 +83,7 @@ func toque_duplo_achado():
 		Global.contador_de_escolhidos += 1
 		print("chegou ao fim")
 		queue_free()
+		travado = false
 		
 func adiciona_perca():
 	Global.vidas_perdidas += 1

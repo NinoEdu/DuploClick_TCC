@@ -13,5 +13,5 @@ func _process(delta: float) -> void:
 
 func _on_button_button_down() -> void:
 	click_ini.play()
-	await get_tree().create_timer(0.3).timeout 
+	await get_tree().create_timer(0.15).timeout 
 	get_tree().change_scene_to_file("res://main.tscn")
