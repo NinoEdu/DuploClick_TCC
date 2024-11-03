@@ -231,7 +231,6 @@ func _on_reset_pause_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://main.tscn")
 
-
 func _on_sair_pause_pressed() -> void:
 	Global.reset = false
 	pause_game.visible = false
