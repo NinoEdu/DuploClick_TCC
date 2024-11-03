@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://qmlhksdshvyr"]
+
+[ext_resource type="Script" path="res://triangulo.gd" id="1_vdi6f"]
+[ext_resource type="Texture2D" uid="uid://cddb8luw5jwnp" path="res://assets/main/triangulo.png" id="2_yn0ng"]
+[ext_resource type="AudioStream" uid="uid://bk7jel7hjo5qp" path="res://assets/sounds/Negative sound effect.mp3" id="3_hdpps"]
+[ext_resource type="AudioStream" uid="uid://bkfxlbwn6iah7" path="res://assets/sounds/Good Idea_2_Good Thinking.wav" id="4_wy14o"]
+[ext_resource type="AudioStream" uid="uid://mrphqt25xpp6" path="res://assets/sounds/Video Game Jump Sound Effect 1.wav" id="5_jm7am"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3kh5j"]
+radius = 109.0
+height = 218.0
+
+[node name="triangulo" type="Area2D"]
+z_index = 2
+script = ExtResource("1_vdi6f")
+
+[node name="triangulo" type="Sprite2D" parent="."]
+rotation = 0.0349066
+texture = ExtResource("2_yn0ng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -12)
+shape = SubResource("CapsuleShape2D_3kh5j")
+
+[node name="errado" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hdpps")
+
+[node name="pegou" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wy14o")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jm7am")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pk32gopa0ucg"
+path="res://.godot/imported/Duolingo - Sound Effetcs.mp3-33c82cce182fb1ae58274ecd44e262b1.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Duolingo - Sound Effetcs.mp3"
+dest_files=["res://.godot/imported/Duolingo - Sound Effetcs.mp3-33c82cce182fb1ae58274ecd44e262b1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
