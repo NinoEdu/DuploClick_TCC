@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Negative sound effect.mp3-4e007de90277c97d5f5
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
-beat_count=0
-bar_beats=4
+loop_offset=0.0
+bpm=281.78
+beat_count=2
+bar_beats=7

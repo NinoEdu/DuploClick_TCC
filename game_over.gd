@@ -42,14 +42,20 @@ func atualiza_final():
 
 func _on_quit_b_button_down() -> void:
 	Global.reset = false
+	$click.play()
+	await get_tree().create_timer(0.15).timeout
 	get_tree().change_scene_to_file("res://start_game.tscn")
 
 
 func _on_next_b_button_down() -> void:
 	Global.reset = false
+	$click.play()
+	await get_tree().create_timer(0.15).timeout
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
 func _on_restart_b_button_down() -> void:
 	Global.reset = true
+	$click.play()
+	await get_tree().create_timer(0.15).timeout
 	get_tree().change_scene_to_file("res://main.tscn")

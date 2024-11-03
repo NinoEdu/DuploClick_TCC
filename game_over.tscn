@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://sbw5jhgf3j6s"]
+[gd_scene load_steps=18 format=3 uid="uid://sbw5jhgf3j6s"]
 
 [ext_resource type="Script" path="res://game_over.gd" id="1_ohthg"]
 [ext_resource type="Texture2D" uid="uid://dqww50vpj5wul" path="res://assets/main/GAME4-TCC.png" id="1_xl23u"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://bu5633he0jbes" path="res://assets/LilitaOne-Regular.ttf" id="7_ixso2"]
 [ext_resource type="AudioStream" uid="uid://mrphqt25xpp6" path="res://assets/sounds/Video Game Jump Sound Effect 1.wav" id="11_67uya"]
 [ext_resource type="AudioStream" uid="uid://d4jubstrkwvhk" path="res://assets/sounds/aplausos-2.ogg" id="12_jy5e1"]
+[ext_resource type="AudioStream" uid="uid://dncf760olabbr" path="res://assets/sounds/ta-da-brass-band-soundroll-1-00-04.mp3" id="13_nx8gn"]
 
 [sub_resource type="Animation" id="Animation_xis8i"]
 length = 0.001
@@ -651,14 +652,18 @@ text = "x"
 stream = ExtResource("12_jy5e1")
 autoplay = true
 
-[node name="click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_67uya")
+[node name="datan" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_nx8gn")
+autoplay = true
 
 [node name="game_over" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_qnx17")
 }
 autoplay = "fade_in"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_67uya")
 
 [connection signal="button_down" from="next_b" to="." method="_on_next_b_button_down"]
 [connection signal="button_down" from="quit_b" to="." method="_on_quit_b_button_down"]

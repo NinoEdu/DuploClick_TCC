@@ -209,29 +209,34 @@ func reinicia_global():
 	Global.vidas_perdidas = 0
 	Global.nome_escolhido = ""
 
-
 func _on_pause_but_pressed() -> void:
+	click.play()
+	await get_tree().create_timer(0.1).timeout
 	pause_game.visible = true
 	get_tree().paused = true
 
-
 func _on_button_pressed() -> void:
+	click.play()
 	pause_layer.visible = false
 	get_tree().paused = false
 
-
 func _on_play_pause_pressed() -> void:
+	click.play()
 	pause_game.visible = false
 	get_tree().paused = false
 
-
 func _on_reset_pause_pressed() -> void:
+	click.play()
+	await get_tree().create_timer(0.2).timeout
 	Global.reset = true
 	pause_game.visible = false
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://main.tscn")
 
+
 func _on_sair_pause_pressed() -> void:
+	click.play()
+	await get_tree().create_timer(0.2).timeout
 	Global.reset = false
 	pause_game.visible = false
 	get_tree().paused = false

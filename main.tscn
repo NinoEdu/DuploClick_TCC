@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://uqbo6tx5k100" path="res://assets/main/1_vida.png" id="18_dd83j"]
 [ext_resource type="Texture2D" uid="uid://chcd5c8g8bgal" path="res://assets/main/2_vidas.png" id="19_kbpf4"]
 [ext_resource type="Texture2D" uid="uid://deaxuf185ky6c" path="res://assets/main/pause.png" id="20_q722l"]
-[ext_resource type="AudioStream" uid="uid://ciqhngbv100iy" path="res://assets/sounds/MA_RocaMusic_CandyMiners_Loop.ogg" id="21_qmhl8"]
+[ext_resource type="AudioStream" uid="uid://n121u6ncbmov" path="res://assets/pause/honey-im-home-giulio-fazio-main-version-02-37-3206.mp3" id="21_fmu38"]
 [ext_resource type="Texture2D" uid="uid://c83oxh7rv8o28" path="res://assets/pause/w_pause.png" id="23_1v6ug"]
 [ext_resource type="AudioStream" uid="uid://mrphqt25xpp6" path="res://assets/sounds/Video Game Jump Sound Effect 1.wav" id="24_24wmm"]
 [ext_resource type="Texture2D" uid="uid://djr388ljgcc25" path="res://assets/pause/reset_pause.png" id="24_pcr4k"]
@@ -46,7 +46,7 @@ texture = ExtResource("6_cxogb")
 
 [node name="q_escolhidos" type="Label" parent="."]
 z_index = 3
-offset_left = 1653.0
+offset_left = 1448.0
 offset_top = 28.0
 offset_right = 1734.0
 offset_bottom = 173.0
@@ -57,6 +57,7 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("7_t61vb")
 theme_override_font_sizes/font_size = 126
 text = "0"
+horizontal_alignment = 2
 
 [node name="circulo" parent="." instance=ExtResource("2_lxu00")]
 visible = false
@@ -103,6 +104,7 @@ offset_left = 833.0
 offset_top = 722.0
 offset_right = 1092.0
 offset_bottom = 861.0
+focus_mode = 0
 icon = ExtResource("10_f7bgm")
 flat = true
 script = ExtResource("11_ps7ut")
@@ -190,7 +192,8 @@ icon = ExtResource("20_q722l")
 flat = true
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_qmhl8")
+stream = ExtResource("21_fmu38")
+volume_db = -2.0
 autoplay = true
 parameters/looping = false
 
@@ -211,6 +214,7 @@ texture = ExtResource("23_1v6ug")
 
 [node name="reset_pause" type="Button" parent="pause"]
 process_mode = 3
+layout_mode = 0
 offset_left = 865.0
 offset_top = 539.0
 offset_right = 1054.0
@@ -221,6 +225,7 @@ flat = true
 
 [node name="play_pause" type="Button" parent="pause"]
 process_mode = 3
+layout_mode = 0
 offset_left = 1082.0
 offset_top = 541.0
 offset_right = 1276.0

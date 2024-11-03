@@ -6,11 +6,13 @@ var toque_contador=0
 # Referência ao Timer adicionado manualmente
 var tempo_ultimo_toque = 0.0
 const LIMIAR_TOQUE_DUPLO = 0.6  # Tempo máximo (em ms) para considerar duplo toque
-
+var adiciona = Label
+var remove = Label
 
 func _ready():
-	pass
-
+	adiciona = $adiciona
+	remove = $remove
+	
 func _process(delta):
 	# Atualiza o tempo desde o último toque
 	if toque_contador > 0:
@@ -19,10 +21,14 @@ func _process(delta):
 	position.y += velocidade_queda * delta  # Faz a fruta descer
 	if self.is_in_group("escolhido"):
 		if position.y > 1080:
-			#await get_tree().create_timer(0.6).timeout 
-			Global.vidas_perdidas += 1
-			print("sou escolhido e ngm clicou em mim")
+			$negativo.play()
+			var posicao = self.global_position
+			remove.global_position = posicao
+			remove.visible = true
+			$remove/adiciona_a.play("adiciona")
+			await get_tree().create_timer(0.5).timeout 
 			queue_free()
+			adiciona_perca()
 			
 	else:
 		if position.y > 1080:
@@ -31,9 +37,13 @@ func _process(delta):
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if event is InputEventMouseButton and event.is_pressed():
+			#$Quadrado/quadrado_a.stop()
+			$Quadrado/quadrado_a.play("quadrado")
+			$click.play()
 			if toque_contador >= 1 and tempo_ultimo_toque <= LIMIAR_TOQUE_DUPLO:
 				toque_contador = 0 #reseta essa merda
 				tempo_ultimo_toque = 0.0  # Reseta o tempo
+				$click.stop()
 				toque_duplo_achado()
 			else:
 				#Primeiro toque detectado ou tempo limite excedido
@@ -43,10 +53,30 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				
 func toque_duplo_achado():
 	if self.is_in_group("inimigos"):
-		print("sou inimigo")
+		$negativo.play()
+		var posicao = self.global_position
+		remove.global_position = posicao
+		print(remove.global_position)
+		remove.visible = true
+		$remove/adiciona_a.play("adiciona")
 		Global.vidas_perdidas += 1
+		await get_tree().create_timer(0.5).timeout 
 		queue_free()
+		
 	elif self.is_in_group("escolhido"):
+		$pegou.play()
 		print("escolhido")
+		print("entrpu: ")
+		var posicao = self.global_position
+		print("posicao: ",posicao)
+		adiciona.global_position = posicao
+		print(adiciona.global_position)
+		adiciona.visible = true
+		$adiciona/adiciona_a.play("adiciona")
+		await get_tree().create_timer(0.5).timeout 
 		Global.contador_de_escolhidos += 1
+		print("chegou ao fim")
 		queue_free()
+
+func adiciona_perca():
+	Global.vidas_perdidas += 1
