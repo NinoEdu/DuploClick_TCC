@@ -5,6 +5,7 @@ var vidas = 3
 var pause_scene
 
 var objeto = preload("res://scenes/objeto.tscn")
+var objeto_certo = false
 var tempo = 0
 
 func _ready() -> void:
@@ -12,24 +13,22 @@ func _ready() -> void:
 	$objeto.texture = load(Global.objeto_escolhido)
 
 #spawn dos objetos
-func _on_timer_timeout() -> void:
-	var instanciar_objeto = objeto.instantiate()
-	Global.array_objetos.shuffle()
-	instanciar_objeto.objeto = Global.array_objetos[0]
-	instanciar_objeto.get_node("objeto").texture = load(Global.array_objetos[0])
-	spawn_objetos(instanciar_objeto)
-
-
 func _on_spawn_certo_timeout() -> void:
+	objeto_certo = true
+
+
+func _on_timer_spawn_timeout():
 	var instanciar_objeto = objeto.instantiate()
-	instanciar_objeto.objeto = Global.objeto_escolhido
-	instanciar_objeto.get_node("objeto").texture = load(Global.objeto_escolhido)
-	#tenta garantir que os objetos não tenham spawn na mesma posição
-	await get_tree().create_timer(randf_range(0.2, 0.5)).timeout
-	spawn_objetos(instanciar_objeto)
-
-
-func spawn_objetos(instanciar_objeto):
+	
+	if objeto_certo:
+		instanciar_objeto.objeto = Global.objeto_escolhido
+		instanciar_objeto.get_node("objeto").texture = load(Global.objeto_escolhido)
+		objeto_certo = false #reset
+	else:
+		Global.array_objetos.shuffle()
+		instanciar_objeto.objeto = Global.array_objetos[0]
+		instanciar_objeto.get_node("objeto").texture = load(Global.array_objetos[0])
+	
 	instanciar_objeto.connect("acertou", Callable(self, "acertou"))
 	instanciar_objeto.connect("errou", Callable(self, "errou"))
 	instanciar_objeto.connect("fora_da_tela", Callable(self, "fora_da_tela"))

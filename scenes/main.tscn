@@ -89,9 +89,9 @@ autostart = true
 stream = ExtResource("8_v1144")
 
 [node name="spawn_certo" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 10.3
 autostart = true
 
 [connection signal="pressed" from="pause_botao" to="." method="_on_pause_botao_pressed"]
-[connection signal="timeout" from="timer_spawn" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timer_spawn" to="." method="_on_timer_spawn_timeout"]
 [connection signal="timeout" from="spawn_certo" to="." method="_on_spawn_certo_timeout"]
