@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6qf1ane2jfyh"]
+
+[ext_resource type="AudioStream" uid="uid://n121u6ncbmov" path="res://assets/sounds/honey-im-home-giulio-fazio-main-version-02-37-3206.mp3" id="1_gowbk"]
+
+[node name="Musica" type="AudioStreamPlayer"]
+stream = ExtResource("1_gowbk")
+volume_db = -4.0
+autoplay = true

@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-config/name="DuploClick"
-run/main_scene="res://start_game.tscn"
+config/name="DuploClique"
+run/main_scene="res://scenes/inicio.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://assets/sounds/logo.png"
+config/icon="res://assets/logo.png"
 
 [autoload]
 
-Global="*res://global.gd"
+Global="*res://scripts/Global.gd"
+Musica="*res://scenes/musica.tscn"
 
 [display]
 
@@ -28,4 +29,3 @@ window/stretch/mode="canvas_items"
 [rendering]
 
 renderer/rendering_method="mobile"
-textures/vram_compression/import_etc2_astc=true

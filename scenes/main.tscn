@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbq6a6ympmgnr"]
+
+[ext_resource type="Texture2D" uid="uid://cx14mg48hk1eg" path="res://assets/fundos_telas/backGround.png" id="1_43kop"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_tjlk2"]
+[ext_resource type="Texture2D" uid="uid://dgjdo1xmytn5o" path="res://assets/vidas/3_vidas.png" id="2_hju7v"]
+[ext_resource type="Texture2D" uid="uid://deaxuf185ky6c" path="res://assets/botoes/pause.png" id="3_7xn5q"]
+[ext_resource type="FontFile" uid="uid://bu5633he0jbes" path="res://assets/LilitaOne-Regular.ttf" id="5_udq2q"]
+[ext_resource type="AudioStream" uid="uid://mrphqt25xpp6" path="res://assets/sounds/Video Game Jump Sound Effect 1.wav" id="6_80y63"]
+[ext_resource type="Texture2D" uid="uid://dr8cj05s1nd8u" path="res://assets/objetos/triangulo_azul.png" id="7_dn518"]
+[ext_resource type="AudioStream" uid="uid://bk7jel7hjo5qp" path="res://assets/sounds/Negative sound effect.mp3" id="8_v1144"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dodwi"]
+texture = ExtResource("3_7xn5q")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jnecn"]
+texture = ExtResource("3_7xn5q")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5yyc7"]
+texture = ExtResource("3_7xn5q")
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_tjlk2")
+
+[node name="fundo" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_43kop")
+expand_mode = 1
+
+[node name="vidas" type="TextureRect" parent="."]
+z_index = 3
+offset_left = 57.0
+offset_top = 34.0
+offset_right = 414.0
+offset_bottom = 137.0
+texture = ExtResource("2_hju7v")
+expand_mode = 1
+
+[node name="pause_botao" type="Button" parent="."]
+z_index = 3
+offset_left = 915.0
+offset_top = 27.0
+offset_right = 1005.0
+offset_bottom = 117.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_dodwi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jnecn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5yyc7")
+
+[node name="score" type="Label" parent="."]
+z_index = 3
+offset_left = 1448.0
+offset_top = 28.0
+offset_right = 1734.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0.329412, 0.513726, 0.972549, 1)
+theme_override_colors/font_shadow_color = Color(0.0156863, 0.0862745, 0.290196, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("5_udq2q")
+theme_override_font_sizes/font_size = 126
+text = "0"
+horizontal_alignment = 2
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_80y63")
+
+[node name="objeto" type="TextureRect" parent="."]
+offset_left = 1771.0
+offset_top = 55.0
+offset_right = 1881.0
+offset_bottom = 165.0
+texture = ExtResource("7_dn518")
+expand_mode = 1
+
+[node name="timer_spawn" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="negativo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_v1144")
+
+[node name="spawn_certo" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[connection signal="pressed" from="pause_botao" to="." method="_on_pause_botao_pressed"]
+[connection signal="timeout" from="timer_spawn" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="spawn_certo" to="." method="_on_spawn_certo_timeout"]
