@@ -30,6 +30,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 
 func _on_double_click():
+	$CollisionShape2D.disabled = true
 	await get_tree().create_timer(0.1).timeout
 	
 	if objeto == Global.objeto_escolhido:
